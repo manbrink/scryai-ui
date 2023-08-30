@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "../../../../../prisma/prisma";
+import prisma from "../../../../prisma/prisma";
 
 export async function GET(
   request: Request,
@@ -25,6 +25,7 @@ export async function GET(
         setName: true,
         scryfallBorderCropUrl: true,
         scryfallArtCropUrl: true,
+        scryfallId: true,
       },
       take: 15,
     });

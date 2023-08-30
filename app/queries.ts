@@ -1,20 +1,16 @@
-export async function getCards(searchTerm: string) {
-  let url = `${process.env.NEXT_PUBLIC_API_URL}/api/cards`;
+import axios from 'axios';
 
-  if (searchTerm) {
-    url += `/search/${encodeURIComponent(searchTerm)}`;
+export async function getCards(cardId: string) {
+  let url = `${process.env.NEXT_PUBLIC_AI_URL}/cards/`;
+
+  if (cardId) {
+    url += encodeURIComponent(cardId);
   }
 
-  const res = await fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
+  try {
+    const response = await axios.get(url);
+    return JSON.parse(response.data);
+  } catch (error) {
+    // throw new Error(error.response ? error.response.statusText : "An error occurred");
   }
-
-  return res.json();
 }
