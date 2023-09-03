@@ -7,12 +7,10 @@ import withQueryClientProvider from "./withQueryClientProvider";
 import Image from "next/image";
 
 interface Card {
-  id: string;
+  scryfall_id: string;
   name: string;
-  setName: string;
-  scryfallBorderCropUrl: string;
-  scryfallArtCropUrl: string;
-  scryfallId: string;
+  set: string;
+  border_crop_url: string;
 }
 
 interface Props {
@@ -60,8 +58,8 @@ const CardSearchInput = ({ searchTerm, setSearchTerm, setCardId }: Props) => {
   });
 
   const handleCardClick = (card: Card) => {
-    setSearchTerm(`${card.name} (${card.setName})`);
-    setCardId(card.scryfallId)
+    setSearchTerm(card.name);
+    setCardId(card.scryfall_id)
 
     setShowResults(false);
   };
@@ -102,14 +100,14 @@ const CardSearchInput = ({ searchTerm, setSearchTerm, setCardId }: Props) => {
           {data.data.map((card: Card) => (
             <div
               data-cy="card-search-input-select-option"
-              id={card.id}
-              key={card.id}
+              id={card.scryfall_id}
+              key={card.scryfall_id}
               className="duration-800 flex cursor-pointer items-center p-2 transition-colors hover:bg-neutral-medium"
               onClick={() => handleCardClick(card)}
             >
               <div className="relative h-[140px] w-[105px] overflow-hidden">
                 <Image
-                  src={card.scryfallBorderCropUrl}
+                  src={card.border_crop_url}
                   alt={card.name}
                   fill={true}
                   sizes="(max-width: 105px) 100vw, (max-width: 105px) 50vw, 33vw"
@@ -117,7 +115,7 @@ const CardSearchInput = ({ searchTerm, setSearchTerm, setCardId }: Props) => {
               </div>
               <div className="ml-2 text-white-normal">
                 <div>{card.name}</div>
-                <div className="text-sm opacity-70">{card.setName}</div>
+                <div className="text-sm opacity-70">{card.set}</div>
               </div>
             </div>
           ))}
