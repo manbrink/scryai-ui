@@ -11,7 +11,7 @@ export default function CardSearch({ setCardId }: Props) {
         <div className="col-span-2 p-4"></div>
         <div className="relative col-span-6 p-4">
           <CardSearchInput setCardId={setCardId} />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 transform">
+          <span className="absolute left-5 top-1/2 -translate-y-1/2 transform">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-white-normal"
