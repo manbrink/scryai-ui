@@ -14,8 +14,6 @@ interface Card {
 }
 
 interface Props {
-  searchTerm: string;
-  setSearchTerm: (searchTerm: string) => void;
   setCardId: (cardId: string) => void;
 }
 
@@ -39,7 +37,8 @@ async function getData(searchTerm: string) {
   return res.json();
 }
 
-const CardSearchInput = ({ searchTerm, setSearchTerm, setCardId }: Props) => {
+const CardSearchInput = ({ setCardId }: Props) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [internalSearchTerm, setInternalSearchTerm] = useState("");
   const [showResults, setShowResults] = useState(false);
 
@@ -106,12 +105,14 @@ const CardSearchInput = ({ searchTerm, setSearchTerm, setCardId }: Props) => {
               onClick={() => handleCardClick(card)}
             >
               <div className="relative h-[140px] w-[105px] overflow-hidden">
-                <Image
-                  src={card.border_crop_url}
-                  alt={card.name}
-                  fill={true}
-                  sizes="(max-width: 105px) 100vw, (max-width: 105px) 50vw, 33vw"
-                />
+                {card.border_crop_url && (
+                  <Image
+                    src={card.border_crop_url}
+                    alt={card.name}
+                    fill={true}
+                    sizes="(max-width: 105px) 100vw, (max-width: 105px) 50vw, 33vw"
+                  />
+                )}
               </div>
               <div className="ml-2 text-white-normal">
                 <div>{card.name}</div>

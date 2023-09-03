@@ -12,7 +12,6 @@ import Loading from "./components/Loading";
 import { getCards } from "./queries";
 
 const CardsPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [cardId, setCardId] = useState("");
 
   // get the ai cards
@@ -26,16 +25,16 @@ const CardsPage = () => {
   if (isError) {
     return <div>Error</div>;
   } else {
-    // console.log(data);
+    // console.log('page data', data);
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-24">
        <div className="relative mt-[60px] w-full">
-        <CardSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCardId={setCardId} />
+        <CardSearch setCardId={setCardId} />
         {fetchStatus === "fetching" && <Loading />}
-        {data && <CardList data={data} />}
-      </div>   
+        {fetchStatus !== "fetching" && data && <CardList data={data} />}
+       </div>   
     </main>
   )
 }

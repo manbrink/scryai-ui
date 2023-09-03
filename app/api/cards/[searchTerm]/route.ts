@@ -9,12 +9,10 @@ export async function GET(
     params: { searchTerm: string };
   }
 ) {
+  const client = await pgClient.connect();
+  
   try {
     const searchTerm = params.searchTerm;
-
-    // console.log(searchTerm);
-
-    await pgClient.connect();
 
     const query = `
       SELECT 
@@ -27,16 +25,14 @@ export async function GET(
       LIMIT 15;
     `;
     
-    const res = await pgClient.query(query, [`%${searchTerm}%`]);
+    const res = await client.query(query, [`%${searchTerm}%`]);
   
     const data = res.rows;
-    
-    // console.log(data);
 
     return NextResponse.json({ data });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   } finally {
-    // await pgClient.end();
+    client.release();
   }
 }

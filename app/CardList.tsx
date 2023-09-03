@@ -12,8 +12,6 @@ interface CardListProps {
 }
 
 const CardList = ({ data }: CardListProps) => {
-  // console.log(data[0]);
-
   return (
     <main className="container mx-auto">
       {(data.length > 0 && (
@@ -25,14 +23,16 @@ const CardList = ({ data }: CardListProps) => {
             >
               <div className="w-[285px] rounded bg-white-normal shadow-lg">
                 <div className="relative h-[356.25px] w-[285px] overflow-hidden">
-                  <Image
-                    src={card.image_uri}
-                    alt={card.name}
-                    fill={true}
-                    className="rounded-t"
-                    sizes="(max-width: 285px) 100vw, (max-width: 285px) 50vw, 33vw"
-                    // style={{ objectFit: "cover" }}
-                  />
+                  {card.image_uri && (
+                    <Image
+                      src={card.image_uri}
+                      alt={card.name}
+                      fill={true}
+                      className="rounded-t"
+                      sizes="(max-width: 285px) 100vw, (max-width: 285px) 50vw, 33vw"
+                      // style={{ objectFit: "cover" }}
+                    />
+                  )}
                 </div>
 
                 <div className="p-4 bg-neutral-medium rounded-b">
