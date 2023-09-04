@@ -13,7 +13,7 @@ interface CardListProps {
 
 const CardList = ({ data }: CardListProps) => {
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto mt-4">
       {(data.length > 0 && (
         <div className="grid justify-items-center gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {data.map((card: Card) => (
@@ -21,7 +21,7 @@ const CardList = ({ data }: CardListProps) => {
               data-cy={`deckListItem${card.name}`}
               key={card.id}
             >
-              <div className="w-[285px] rounded bg-white-normal shadow-lg">
+              <div className="w-[285px] rounded shadow-lg">
                 <div className="relative h-[356.25px] w-[285px] overflow-hidden">
                   {card.image_uri && (
                     <Image
@@ -35,7 +35,7 @@ const CardList = ({ data }: CardListProps) => {
                   )}
                 </div>
 
-                <div className="p-4 bg-neutral-medium rounded-b">
+                <div className="p-4 opacity-90 bg-neutral-dark rounded-b">
                   <h2 className="text-l text-white-normal">{card.name}</h2>
                   <p className="text-sm text-white-normal opacity-70">
                     Similarity: <b>{card.similarity_score}</b>
