@@ -3,10 +3,10 @@
 
 import { Pool } from 'pg';
 
-let pgClient: typeof Pool;
+let pgClient: Pool;
 
 interface CustomGlobal extends Global {
-  pgClient: typeof Pool;
+  pgClient: Pool;
 }
 
 declare const global: CustomGlobal;
