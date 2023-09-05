@@ -64,10 +64,13 @@ const CardSearchInput = ({ setCardId }: Props) => {
   };
 
   const handleSearchTermChange = (e: any) => {
-    setSearchTerm(e.target.value);
-    setCardId("")
-
-    setShowResults(true);
+    const newSearchTerm = e.target.value;
+  
+    if (newSearchTerm !== searchTerm) {
+      setSearchTerm(newSearchTerm);
+      setCardId("");
+      setShowResults(true);
+    }
   };
 
   return (

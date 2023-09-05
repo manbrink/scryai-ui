@@ -8,8 +8,8 @@ export default function CardSearch({ setCardId }: Props) {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-10 items-center gap-1">
-        <div className="col-span-2 p-4"></div>
-        <div className="relative col-span-6 p-4">
+        <div className="col-span-1 md:col-span-2 p-4"></div>
+        <div className="relative col-span-8 md:col-span-6 p-4">
           <CardSearchInput setCardId={setCardId} />
           <span className="absolute left-5 top-1/2 -translate-y-1/2 transform">
             <svg
@@ -26,7 +26,7 @@ export default function CardSearch({ setCardId }: Props) {
             </svg>
           </span>
         </div>
-        <div className="col-span-2 p-4"></div>
+        <div className="col-span-1 md:col-span-2 p-4"></div>
       </div>
     </div>
   );

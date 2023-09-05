@@ -29,12 +29,14 @@ const CardsPage = () => {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between px-24">
-       <div className="relative mt-[60px] w-full">
+    <main className="flex min-h-screen flex-col items-center px-4 sm:px-8 md:px-16 lg:px-24">
+      <h1 className="text-4xl font-bold mt-8">Scry AI</h1>
+      <p className="text-xl mt-4 text-center">Search for a card by name to see similar cards.</p>
+      <div className="relative mt-5 w-full">
         <CardSearch setCardId={setCardId} />
         {fetchStatus === "fetching" && <Loading />}
         {fetchStatus !== "fetching" && data && <CardList data={data} />}
-       </div>   
+      </div>   
     </main>
   )
 }
